@@ -19,6 +19,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Login extends AppCompatActivity {
 
@@ -28,13 +30,19 @@ public class Login extends AppCompatActivity {
     private EditText mEmailView;
     private EditText mPasswordView;
     Button login ;
+    DatabaseReference myRef;
+    String newmail;
+    Boolean no;
+    FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+       final Intent intent = getIntent();
+        no = intent.getBooleanExtra("nominate",false);
         mEmailView = (EditText) findViewById(R.id.login_email);
+         database = FirebaseDatabase.getInstance();
         mPasswordView = (EditText) findViewById(R.id.login_password);
         login = findViewById(R.id.loginButton);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -52,6 +60,8 @@ public class Login extends AppCompatActivity {
 
         // TODO: Grab an instance of FirebaseAuth
         mAuth = FirebaseAuth.getInstance();
+        myRef = database.getReference("votes").child("ITA");
+        final DatabaseReference urRef = database.getReference("Users");
 
     }
     public void login(View view){
@@ -75,8 +85,16 @@ public class Login extends AppCompatActivity {
         // TODO: Complete the attemptLogin() method
         private void attemptLogin() {
 
-            String email = mEmailView.getText().toString();
+            final String email = mEmailView.getText().toString();
             String password = mPasswordView.getText().toString();
+            newmail="";Boolean j=true;
+            for(int i=0;i<email.length()&& j;i++) {
+                if(email.charAt(i)!='@'){
+                    newmail += email.charAt(i);
+                }else {
+                    j=false;
+                }
+            }
 
             if (email.isEmpty())
                 if (email.equals("") || password.equals("")) return;
@@ -93,10 +111,18 @@ public class Login extends AppCompatActivity {
                         Log.d("CE_SVCE", "Problem signing in: " + task.getException());
 //                        showErrorDialog("There was a problem signing in");
                     } else {
+                        if(no==true)
+                        {
+                            myRef.child(newmail).setValue(0);
+                            Intent intent = new Intent(Login.this,MainActivity.class);
+                            finish();
+                            startActivity(intent);
+                        }
+                        else{
                         Intent intent = new Intent(Login.this,Voting.class);
                         finish();
                         startActivity(intent);
-                    }
+                    }}
 
                 }
             });
