@@ -113,7 +113,9 @@ public class Login extends AppCompatActivity {
                     } else {
                         if(no==true)
                         {
+
                             myRef.child(newmail).setValue(0);
+                            myRef.getParent().child("newly nominated").setValue(newmail);
                             Intent intent = new Intent(Login.this,MainActivity.class);
                             finish();
                             startActivity(intent);
@@ -129,6 +131,7 @@ public class Login extends AppCompatActivity {
 
 
         }
+
 
 //        // TODO: Show error on screen with an alert dialog
         private void showErrorDialog(String message) {

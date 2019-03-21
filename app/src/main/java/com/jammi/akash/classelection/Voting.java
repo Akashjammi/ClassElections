@@ -28,6 +28,8 @@ public class Voting extends AppCompatActivity implements View.OnClickListener {
     Button four;
     Button five;
     Button six;
+    Button seven;
+    Button eight;
     FirebaseDatabase database;
     DatabaseReference myRef;
     DatabaseReference upvotesRef;
@@ -44,14 +46,17 @@ public class Voting extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voting);
         one = findViewById(R.id.button2);
+//        one.setText("testing");
         two = findViewById(R.id.button3);
         three = findViewById(R.id.button4);
         four = findViewById(R.id.button5);
         five = findViewById(R.id.button6);
         six = findViewById(R.id.new1);
+        seven=findViewById(R.id.new2);
+        eight=findViewById(R.id.new3);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("message");
-        DatabaseReference upvotesRef = database.getReference("votes").child("ITA");
+        DatabaseReference upvotesRef = database.getReference("votes");
 
         mAuth = FirebaseAuth.getInstance();
         String email = mAuth.getCurrentUser().getEmail();
@@ -83,21 +88,62 @@ public class Voting extends AppCompatActivity implements View.OnClickListener {
                 System.out.println("Transaction completed");
             }
         });
-//        upvotesRef.child("ITA").addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot snapshot) {
-//             six.setVisibility(View.VISIBLE);
-//              six.setText(snapshot.getValue().toString());
+        upvotesRef.child("newly nominated").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+              if(six.getVisibility()==View.INVISIBLE) {
+                  six.setVisibility(View.VISIBLE);
+                  six.setText(snapshot.getValue().toString());
+              }
+//                Log.i("aa",snapshot.getValue().toString());
+//                if(seven.getVisibility()==View.INVISIBLE) {
+//                    seven.setVisibility(View.VISIBLE);
+//                    seven.setText(snapshot.getValue().toString());
+//                }
+//                if(eight.getVisibility()==View.INVISIBLE) {
+//                    eight.setVisibility(View.VISIBLE);
+//                    eight.setText(snapshot.getValue().toString());
+//                }
+
+
+
+            }
+
+
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+//
+//
+        });
+        String roll="";
+        for(int i=4;i<newmail.length();i++) {
+            roll += (newmail.charAt(i));
+        }
+        Integer rolldata = Integer.parseInt(roll);
+        Log.i("roll",""+roll);
+//        if(rolldata>=170801001 && rolldata<=170801056) {
+//            one.setText("Ram");
+//            two.setText("Kam");
+//            three.setText("Mam");
+//            four.setText("Nam");
+//            five.setText("RTam");
+////            return "IT-A";
 //        }
+//        if(rolldata>=170801057 && rolldata<=170801105) {
+//            one.setText("sham");
+//            two.setText("sjam");
+//            three.setText("kamam");
+//            four.setText("akamam");
+//            five.setText("asdTam");
 //
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//
-//
-//        });
-    }
+//        }
+////            return "IT-B";
+
+        }
     public String  checkroll(int roll)
     {
         if(roll>=170801001 && roll<=170801056) {
