@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Class Elecction</string>
+    <string name="app_name">Class Election</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
