@@ -27,6 +27,7 @@ public class Voting extends AppCompatActivity implements View.OnClickListener {
     Button three;
     Button four;
     Button five;
+    Button six;
     FirebaseDatabase database;
     DatabaseReference myRef;
     DatabaseReference upvotesRef;
@@ -47,9 +48,10 @@ public class Voting extends AppCompatActivity implements View.OnClickListener {
         three = findViewById(R.id.button4);
         four = findViewById(R.id.button5);
         five = findViewById(R.id.button6);
+        six = findViewById(R.id.new1);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("message");
-        DatabaseReference upvotesRef = myRef.child("count");
+        DatabaseReference upvotesRef = database.getReference("votes").child("ITA");
 
         mAuth = FirebaseAuth.getInstance();
         String email = mAuth.getCurrentUser().getEmail();
@@ -74,13 +76,27 @@ public class Voting extends AppCompatActivity implements View.OnClickListener {
                 return Transaction.success(mutableData);
             }
 
+//            one.setText("Aba");
+
             @Override
             public void onComplete(DatabaseError databaseError, boolean committed, DataSnapshot dataSnapshot) {
                 System.out.println("Transaction completed");
             }
         });
-
-
+//        upvotesRef.child("ITA").addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot snapshot) {
+//             six.setVisibility(View.VISIBLE);
+//              six.setText(snapshot.getValue().toString());
+//        }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//
+//
+//        });
     }
     public String  checkroll(int roll)
     {
@@ -109,7 +125,7 @@ public class Voting extends AppCompatActivity implements View.OnClickListener {
     public void one(View view) {
 //        increase(1);
         Intent goToNextActivity = new Intent(getApplicationContext(), temp.class);
-//        classD=checkroll(Integer.parseInt(newmail));
+        classD=checkroll(Integer.parseInt(newmail));
         goToNextActivity.putExtra("user","1");
         goToNextActivity.putExtra("deptsec","ITA");
         startActivity(goToNextActivity);

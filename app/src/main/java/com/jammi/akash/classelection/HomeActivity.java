@@ -47,7 +47,7 @@ public class HomeActivity extends AppCompatActivity {
     {
         new AlertDialog.Builder(HomeActivity.this)
                 .setTitle("Are You sure?")
-                .setMessage("In case you have standing arriers ,Your result will not be counted")
+                .setMessage("In case you have backlogs ,Your result will not be counted")
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent goToNextActivity = new Intent(getApplicationContext(), Login.class);

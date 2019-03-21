@@ -31,7 +31,7 @@
             android:layout_marginBottom="16dp"
             android:background="#81ecec"
             android:onClick="one"
-            android:text="X" />
+            android:text="170801004" />
 
         <Button
             android:id="@+id/button3"
@@ -41,7 +41,7 @@
             android:layout_marginBottom="16dp"
             android:background="#81ecec"
             android:onClick="two"
-            android:text="Y" />
+            android:text="170801008" />
 
         <Button
             android:id="@+id/button4"
@@ -51,7 +51,7 @@
             android:layout_marginBottom="16dp"
             android:background="#81ecec"
             android:onClick="three"
-            android:text="Z" />
+            android:text="170801053" />
 
         <Button
             android:id="@+id/button5"
@@ -61,7 +61,7 @@
             android:layout_marginBottom="16dp"
             android:background="#81ecec"
             android:onClick="four"
-            android:text="XY" />
+            android:text="170801044" />
 
         <Button
             android:id="@+id/button6"
@@ -71,7 +71,40 @@
             android:layout_marginBottom="16dp"
             android:background="#81ecec"
             android:onClick="five"
-            android:text="ZY" />
+            android:text="17080100" />
+
+        <Button
+            android:id="@+id/new1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="#81ecec"
+            android:onClick="five"
+            android:text="17080100"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/new2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="#81ecec"
+            android:onClick="five"
+            android:text="17080100"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/new3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="#81ecec"
+            android:onClick="five"
+            android:text="17080100"
+            android:visibility="invisible" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
